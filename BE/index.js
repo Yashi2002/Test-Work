@@ -18,12 +18,15 @@ app.post('/verify-code', (req, res) => {
         return res.status(400).json({ message: 'Verification Error' });
     }
 
-    // If code passes the checks, consider it verified
+    
     return res.json({ message: 'Code verified successfully.', redirectTo: '/success' });
 });
 
 
-app.listen(5000, () => {
-    console.log('Server is running on port 5000');
+const PORT = process.env.PORT || 5000;
+
+// Listen on 0.0.0.0 to allow external access
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
